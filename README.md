@@ -18,8 +18,8 @@ $ npm install
 $ cp .env.public .env
 ```
 
-## Run NFT Minter
+## Run NFT Minter JS
 
 ```
-$
+$ node src/index.js
 ```
