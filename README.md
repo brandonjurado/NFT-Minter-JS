@@ -21,5 +21,5 @@ $ cp .env.public .env
 ## Run NFT Minter JS
 
 ```
-$ node src/index.js
+$ node src/index.js --amount=<NFT_UNITS> --price=<NFT_PRICE> --mintMethod=<MINT_FUNCTION_NAME>--wait=<TRUE/FALSE> --watchMethod=<IS_SALE_OPEN_FUNCTION_NAME> --tip=<TIP_IN_GWEI> --maxGas=<MAX_GAS_IN_GWEI> --delay=<DELAY_IN_MS> --privKey=<WALLET_PRIVATE_KEY>
 ```
