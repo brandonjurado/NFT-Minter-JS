@@ -21,6 +21,7 @@ const isSaleOpenMethodName = args['watchMethod'] || 'saleActive';
 const PRIVATE_KEY = args['privKey'] || process.env.PRIVATE_KEY;
 const provider    = new ethers.providers.WebSocketProvider(process.env.RPC_URI);
 const wallet      = new ethers.Wallet(PRIVATE_KEY, provider);
+const GAS_API_KEY = process.env.GAS_API_KEY;
 const fallbackAbi = 
   [
     {
@@ -121,5 +122,18 @@ async function getGasPrice() {
   return fastestBaseFee;
 }
 
+async function getGasPriceNew() {
+  console.log(GAS_API_KEY);
+  axios.defaults.headers.get['Content-Type'] = 'application/json';
+  const url = 'https://api.blocknative.com/gasprices/blockprices?confidenceLevels=99';
+  const response = await axios.get(url, {
+    headers: {
+      'Authorization': `${GAS_API_KEY}`
+    }
+  }).catch((error) => {
+    process.stderr.write(`Error received from ${url}: ${error}\n`);
+  });
+  return response.data.blockPrices[0].estimatedPrices[0];
+}
 
 main();
